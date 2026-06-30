@@ -9,6 +9,13 @@
   <i>MCP server que expõe dados do Google Trends via BigQuery</i>
 </p>
 
+<p align="center">
+  <a href="https://github.com/jp-caldas/bigquery-google-trends-mcp/actions"><img src="https://img.shields.io/github/actions/workflow/status/jp-caldas/bigquery-google-trends-mcp/ci.yml?branch=main&label=CI" alt="CI"></a>
+  <a href="https://codecov.io/gh/jp-caldas/bigquery-google-trends-mcp"><img src="https://img.shields.io/codecov/c/github/jp-caldas/bigquery-google-trends-mcp" alt="Coverage"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License"></a>
+  <a href="https://www.python.org"><img src="https://img.shields.io/badge/python-3.12+-blue" alt="Python"></a>
+</p>
+
 ---
 
 ## English
@@ -30,7 +37,7 @@
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/your-username/bigquery-google-trends-mcp.git
+git clone https://github.com/jp-caldas/bigquery-google-trends-mcp.git
 cd bigquery-google-trends-mcp
 
 # 2. Copy env vars and edit with your GCP project ID
@@ -118,7 +125,7 @@ npx @modelcontextprotocol/inspector uv run mcp-google-trends
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/seu-usuario/bigquery-google-trends-mcp.git
+git clone https://github.com/jp-caldas/bigquery-google-trends-mcp.git
 cd bigquery-google-trends-mcp
 
 # 2. Copie as variáveis de ambiente e edite com seu GCP project ID
@@ -190,17 +197,22 @@ npx @modelcontextprotocol/inspector uv run mcp-google-trends
 ## Development / Desenvolvimento
 
 ```bash
-# Run tests / Rodar testes
-uv run pytest tests/ -v
+# All checks at once
+make check
 
-# Lint
-uv run ruff check src/ tests/
+# Or step by step
+make lint        # ruff
+make typecheck   # mypy
+make test        # pytest + coverage
 
-# Type check
-uv run mypy src/
+# Build Docker image
+make build-docker
+
+# Clean cache
+make clean
 ```
 
-**Order / Ordem:** `ruff check` → `mypy` → `pytest`
+**CI:** every push to `main` runs `ruff → mypy → pytest` automatically via GitHub Actions.
 
 ---
 
@@ -212,7 +224,7 @@ src/mcp_google_trends/
 ├── server.py            # FastMCP server + lifespan
 ├── tools.py             # Business logic + SQL queries
 ├── bigquery_client.py   # BigQuery client wrapper
-├── models.py            # Pydantic models (TrendingTerm, RisingTerm, TermComparison)
+├── models.py            # Pydantic models
 ├── config.py            # Environment config validation
 └── exceptions.py        # Custom exceptions
 tests/
@@ -220,8 +232,8 @@ tests/
 ├── test_tools.py        # Tool unit tests
 └── test_server.py       # Server integration tests
 data/
-├── sample_top_terms.json       # Sample output for top terms
-└── sample_rising_terms.json    # Sample output for rising terms
+├── sample_top_terms.json
+└── sample_rising_terms.json
 ```
 
 ---
@@ -233,7 +245,7 @@ data/
 | `mcp[cli]` | MCP server framework (FastMCP) |
 | `google-cloud-bigquery` | BigQuery client |
 | `pydantic` | Data validation and models |
-| `pytest` | Testing |
+| `pytest` + `pytest-cov` | Testing + coverage |
 | `ruff` | Linting |
 | `mypy` | Static type checking |
 
