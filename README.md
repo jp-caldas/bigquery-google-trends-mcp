@@ -1,8 +1,13 @@
 # mcp-google-trends
 
-> **English** | [Português](#português)
+<p align="center">
+  <a href="#english"><kbd>🇺🇸 English</kbd></a>
+  <a href="#português"><kbd>🇧🇷 Português</kbd></a>
+</p>
 
-MCP server that exposes Google Trends data from BigQuery, allowing AI assistants (Claude, etc.) to search trending topics and generate data-driven content ideas.
+<p align="center">
+  <i>MCP server que expõe dados do Google Trends via BigQuery</i>
+</p>
 
 ---
 
