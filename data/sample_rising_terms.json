@@ -1,0 +1,6 @@
+[
+  {"term": "Deep Seek", "percent_gain": 450, "score": 90},
+  {"term": "Agentes de IA", "percent_gain": 320, "score": 75},
+  {"term": "Rust Lang", "percent_gain": 180, "score": 50},
+  {"term": "Computação Quântica", "percent_gain": 120, "score": 40}
+]
